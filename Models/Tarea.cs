@@ -1,10 +1,18 @@
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace proyef.Models;
 
 public class Tarea
 {
+    [Key]
     public Guid TareaId { get; set; }
 
+    [ForeignKey("CategoriaId")]
     public Guid CategoriaId { get; set; }
+
+    [Required]
+    [MaxLength(200)]
     public string Titulo { get; set; }
     public string Desc { get; set; }
 
@@ -13,6 +21,10 @@ public class Tarea
     public DateTime FechaCreado { get; set; }
 
     public virtual Categoria Categoria { get; set; }
+
+    // Omitir campo al momento de generar base de datos
+    [NotMapped]
+    public string Resumen {get; set;}
 
 }
 
