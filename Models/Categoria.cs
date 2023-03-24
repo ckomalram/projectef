@@ -15,6 +15,9 @@ public class Categoria
     
     public string Desc { get; set; }
 
+    
+    public int Peso { get; set; }
+
     public virtual ICollection<Tarea> Tareas { get; set; }
 
 }
