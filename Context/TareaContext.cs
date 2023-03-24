@@ -33,6 +33,8 @@ public class TareaContext : DbContext
             tarea.Property(p => p.PrioridadTarea);
             tarea.Property(p => p.FechaCreado);
 
+            tarea.Ignore(p => p.Resumen);
+
         });
     }
 
