@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace proyef.Models;
 
@@ -18,6 +19,7 @@ public class Categoria
     
     public int Peso { get; set; }
 
+    [JsonIgnore]
     public virtual ICollection<Tarea> Tareas { get; set; }
 
 }
