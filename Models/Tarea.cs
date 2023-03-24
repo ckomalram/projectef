@@ -6,14 +6,14 @@ namespace proyef.Models;
 // [Table("NombrePerzonalizado")]
 public class Tarea
 {
-    [Key]
+    // [Key]
     public Guid TareaId { get; set; }
 
-    [ForeignKey("CategoriaId")]
+    // [ForeignKey("CategoriaId")]
     public Guid CategoriaId { get; set; }
 
-    [Required]
-    [MaxLength(200)]
+    // [Required]
+    // [MaxLength(200)]
     public string Titulo { get; set; }
     public string Desc { get; set; }
 
@@ -24,7 +24,7 @@ public class Tarea
     public virtual Categoria Categoria { get; set; }
 
     // Omitir campo al momento de generar base de datos
-    [NotMapped]
+    // [NotMapped]
     public string Resumen {get; set;}
 
 }
