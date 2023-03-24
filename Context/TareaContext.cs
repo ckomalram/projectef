@@ -19,13 +19,12 @@ public class TareaContext : DbContext
         categoriasInit.Add(new Categoria() { CategoriaId = Guid.Parse("71c87875-4439-4d7c-ba96-f8ba9136dbaa"), Nombre = "Pendientes", Peso = 20 });
         categoriasInit.Add(new Categoria() { CategoriaId = Guid.Parse("71c87875-4439-4d7c-ba96-f8ba9136db02"), Nombre = "Personales", Peso = 20 });
 
-
         modelBuilder.Entity<Categoria>(categoria =>
         {
             categoria.ToTable("Categoria");
             categoria.HasKey(p => p.CategoriaId);
             categoria.Property(p => p.Nombre).IsRequired().HasMaxLength(150);
-            categoria.Property(p => p.Desc);
+            categoria.Property(p => p.Desc).IsRequired(false);
             categoria.Property(p => p.Peso);
 
             categoria.HasData(categoriasInit);
@@ -35,8 +34,8 @@ public class TareaContext : DbContext
 
         // Creando Coleccion para agregar datos semilleros.
         List<Tarea> tareasInit = new List<Tarea>();
-        tareasInit.Add(new Tarea() { TareaId = Guid.Parse("71c87875-4439-4d7c-ba96-f8ba9136db03"), CategoriaId = Guid.Parse("71c87875-4439-4d7c-ba96-f8ba9136dba2"), PrioridadTarea = Prioridad.Media, Titulo = "Ejercicio", FechaCreado = DateTime.Now, Desc="tarea 1" });
-        tareasInit.Add(new Tarea() { TareaId = Guid.Parse("71c87875-4439-4d7c-ba96-f8ba9136db04"), CategoriaId = Guid.Parse("71c87875-4439-4d7c-ba96-f8ba9136dbaa"), PrioridadTarea = Prioridad.Baja, Titulo = "Supermercado", FechaCreado = DateTime.Now, Desc="tarea 2" });
+        tareasInit.Add(new Tarea() { TareaId = Guid.Parse("71c87875-4439-4d7c-ba96-f8ba9136db03"), CategoriaId = Guid.Parse("71c87875-4439-4d7c-ba96-f8ba9136db02"), PrioridadTarea = Prioridad.Media, Titulo = "Ejercicio", FechaCreado = DateTime.Now, Desc = "tarea 1" });
+        tareasInit.Add(new Tarea() { TareaId = Guid.Parse("71c87875-4439-4d7c-ba96-f8ba9136db04"), CategoriaId = Guid.Parse("71c87875-4439-4d7c-ba96-f8ba9136dbaa"), PrioridadTarea = Prioridad.Baja, Titulo = "Supermercado", FechaCreado = DateTime.Now, Desc = "tarea 2" });
 
 
         modelBuilder.Entity<Tarea>(tarea =>
@@ -45,7 +44,7 @@ public class TareaContext : DbContext
             tarea.HasKey(p => p.TareaId);
             tarea.HasOne(p => p.Categoria).WithMany(p => p.Tareas).HasForeignKey(p => p.CategoriaId);
             tarea.Property(p => p.Titulo).IsRequired().HasMaxLength(200);
-            tarea.Property(p => p.Desc);
+            tarea.Property(p => p.Desc).IsRequired(false);
             tarea.Property(p => p.PrioridadTarea);
             tarea.Property(p => p.FechaCreado);
 
