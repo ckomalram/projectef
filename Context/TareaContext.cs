@@ -14,6 +14,12 @@ public class TareaContext : DbContext
     //Fluent API para crear tablas
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        // Creando Coleccion para agregar datos semilleros.
+        List<Categoria> categoriasInit = new List<Categoria>();
+        categoriasInit.Add(new Categoria() { CategoriaId = Guid.Parse("71c87875-4439-4d7c-ba96-f8ba9136dbaa"), Nombre = "Pendientes", Peso = 20 });
+        categoriasInit.Add(new Categoria() { CategoriaId = Guid.Parse("71c87875-4439-4d7c-ba96-f8ba9136db02"), Nombre = "Personales", Peso = 20 });
+
+
         modelBuilder.Entity<Categoria>(categoria =>
         {
             categoria.ToTable("Categoria");
@@ -22,7 +28,16 @@ public class TareaContext : DbContext
             categoria.Property(p => p.Desc);
             categoria.Property(p => p.Peso);
 
+            categoria.HasData(categoriasInit);
+
         });
+
+
+        // Creando Coleccion para agregar datos semilleros.
+        List<Tarea> tareasInit = new List<Tarea>();
+        tareasInit.Add(new Tarea() { TareaId = Guid.Parse("71c87875-4439-4d7c-ba96-f8ba9136db03"), CategoriaId = Guid.Parse("71c87875-4439-4d7c-ba96-f8ba9136dba2"), PrioridadTarea = Prioridad.Media, Titulo = "Ejercicio", FechaCreado = DateTime.Now, Desc="tarea 1" });
+        tareasInit.Add(new Tarea() { TareaId = Guid.Parse("71c87875-4439-4d7c-ba96-f8ba9136db04"), CategoriaId = Guid.Parse("71c87875-4439-4d7c-ba96-f8ba9136dbaa"), PrioridadTarea = Prioridad.Baja, Titulo = "Supermercado", FechaCreado = DateTime.Now, Desc="tarea 2" });
+
 
         modelBuilder.Entity<Tarea>(tarea =>
         {
@@ -35,6 +50,8 @@ public class TareaContext : DbContext
             tarea.Property(p => p.FechaCreado);
 
             tarea.Ignore(p => p.Resumen);
+
+            tarea.HasData(tareasInit);
 
         });
     }
