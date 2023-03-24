@@ -10,9 +10,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 // conf EF para sql server
 // ICARLYLE\SQLEXPRESS
-// "Data Source=SERVIDOR;Initial Catalog=BASE_DE_DATOS;User ID=USUARIO;Password=CONTRASEÑA;"
-
-builder.Services.AddSqlServer<TareaContext>("Data Source=ICARLYLE\\SQLEXPRESS;Initial Catalog=TareasDb;User ID=sa;Password=sa;");
+// Boiler plate: "Data Source=SERVIDOR;Initial Catalog=BASE_DE_DATOS;User ID=USUARIO;Password=CONTRASEÑA;"
+//Enzalando el string a appsettings.json
+builder.Services.AddSqlServer<TareaContext>(builder.Configuration.GetConnectionString("cnTareas"));
 
 var app = builder.Build();
 
