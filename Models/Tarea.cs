@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace proyef.Models;
 
+// [Table("NombrePerzonalizado")]
 public class Tarea
 {
     [Key]
