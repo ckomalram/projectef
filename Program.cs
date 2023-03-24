@@ -23,4 +23,11 @@ app.MapGet("/dbconexion", async ([FromServices] TareaContext dbContext) =>
     return Results.Ok("DB en memoria " + dbContext.Database.IsInMemory());
 });
 
+app.MapGet("/api/tareas",  async ( [FromServices] TareaContext dbContext) =>
+{
+     return Results.Ok(dbContext.Tareas);
+
+});
+
+
 app.Run();
