@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace proyef.Models;
 
@@ -25,6 +26,7 @@ public class Tarea
 
     // Omitir campo al momento de generar base de datos
     // [NotMapped]
+    [JsonIgnore]
     public string Resumen {get; set;}
 
 }
